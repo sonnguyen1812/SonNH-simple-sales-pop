@@ -1,0 +1,30 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "web-simple-sales-pop"
+client_id = "c27717b7e885876a4bc0a6d43254b6d5"
+application_url = "https://8aae-171-224-178-218.ngrok-free.app/auth/shopify"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://8aae-171-224-178-218.ngrok-free.app/auth/shopify/callback",
+  "https://8aae-171-224-178-218.ngrok-free.app/authSa/shopify/callback",
+  "https://8aae-171-224-178-218.ngrok-free.app/auth/shopify/embed/callback",
+  "https://localhost:3000/auth/shopify/callback",
+  "https://localhost:3000/authSa/shopify/callback",
+  "https://localhost:3000/auth/shopify/embed/callback"
+]
+
+[webhooks]
+api_version = "2024-04"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "simple-sales-pop.myshopify.com"
