@@ -1,4 +1,4 @@
-import './Settings.css';
+import './settings.css';
 
 import {
   Checkbox,
@@ -234,6 +234,7 @@ export default function Settings() {
     <div style={{marginBottom: '50px'}}>
       <Frame>
         <Page
+          fullWidth
           title="Settings"
           subtitle="Dicide how your notifications will display"
           primaryAction={{
