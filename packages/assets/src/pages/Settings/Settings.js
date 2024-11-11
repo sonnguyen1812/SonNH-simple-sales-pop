@@ -19,7 +19,7 @@ import NotificationPopup from '@assets/components/NotificationPopup/Notification
 import PageInput from '@assets/components/PageInput/PageInput';
 import SliderRange from '@assets/components/SliderRange/SliderRange';
 import {api} from '@assets/helpers';
-import defaultSettings from '@assets/const/defaultSettings.';
+import defaultSettings from '@assets/const/defaultSettings';
 import useActiveToast from '@assets/hooks/toast/useActiveToast';
 import useConfirmModal from '@assets/hooks/popup/useConfirmModal';
 import useFetchApi from '@assets/hooks/api/useFetchApi';
