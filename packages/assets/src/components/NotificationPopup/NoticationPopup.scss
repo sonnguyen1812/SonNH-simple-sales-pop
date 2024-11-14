@@ -21,6 +21,7 @@
   opacity: 0;
   visibility: hidden;
   position: absolute;
+  display: flex;
   top: -100px;
   left: -10px;
   text-align: center;
@@ -40,19 +41,20 @@
 .Avava-SP__Wrapper .Avava-SP__Container {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
   -webkit-box-shadow: 3px 0 5px rgba(5, 5, 5, 0.07);
   -moz-box-shadow: 3px 0 5px rgba(5, 5, 5, 0.07);
   box-shadow: 3px 0 5px rgba(5, 5, 5, 0.07);
   background: #ffffff;
-  padding: 5px;
+  padding-block: 5px;
+  padding-left: 10px;
   width: 293px;
   position: relative;
 
 
   .close-btn {
-    top: 2px;
-    right: 12px;
+    top: 5px;
+    right: 5px;
     position: absolute;
   }
 }
@@ -60,7 +62,7 @@
   height: 65px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
-  border-radius: 15px;
+  border-radius: 12px;
   color: #43495a;
   font-size: 55px;
   width: 65px;

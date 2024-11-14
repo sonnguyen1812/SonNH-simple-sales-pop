@@ -32,6 +32,7 @@ const NotificationPopup = ({
             <div
               className="Avava-SP__Image"
               style={{
+                marginTop: '5px',
                 backgroundImage: `url(${productImage})`
               }}
             ></div>
