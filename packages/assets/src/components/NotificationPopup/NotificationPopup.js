@@ -1,3 +1,4 @@
+// packages/assets/src/components/NotificationPopup/NotificationPopup.js
 import './NoticationPopup.scss';
 import '@shopify/polaris/build/esm/styles.css';
 
@@ -32,7 +33,6 @@ const NotificationPopup = ({
             <div
               className="Avava-SP__Image"
               style={{
-                marginTop: '5px',
                 backgroundImage: `url(${productImage})`
               }}
             ></div>
