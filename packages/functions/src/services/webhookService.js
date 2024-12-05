@@ -33,16 +33,6 @@ export const deleteWebhooks = ({shopName, accessToken}, ids) => {
   return Promise.all(ids.map(id => deleteWebhook({shopName, accessToken}, id)));
 };
 
-export const scriptTagCreate = ({shopName, accessToken}) => {
-  const shopify = createShopifyInstance({shopName, accessToken});
-  return shopify.scriptTag.create({
-    script_tag: {
-      event: 'onload',
-      src: 'https://localhost:3000/scripttag/avada-sale-pop.min.js'
-    }
-  });
-};
-
 export const processOrder = async (orderData, shopifyDomain) => {
   const shop = await getShopByShopifyDomain(shopifyDomain);
 
