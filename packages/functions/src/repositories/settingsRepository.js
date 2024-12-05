@@ -36,13 +36,14 @@ export const getSettingByShopDomain = async shopDomain => {
   }))[0];
 };
 
+// get id bản ghi với shopid phải giống shopid hiện tại
+// update bản ghi theo id mà mình vừa tìm đc
 export const updateSetting = async (shopId, updateInfo) => {
   const settingsDoc = await getSetting(shopId);
-  await settingsRef.doc(settingsDoc.id).update({...updateInfo});
-
-  return await getSetting(shopId);
+  return await settingsRef.doc(settingsDoc.id).update({...updateInfo});
 };
 
 export const addSetting = ({shopDomain, shopId, addInfo}) => {
+  console.log('addInfo', addInfo);
   return settingsRef.add({shopDomain, shopId, ...addInfo});
 };

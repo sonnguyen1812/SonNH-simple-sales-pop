@@ -27,8 +27,9 @@ export const update = async ctx => {
     const shopDomain = ctx.state.user.shopifyDomain;
     const shopId = getCurrentShop(ctx);
     const {data} = ctx.req.body;
+    console.log('data:', data);
 
-    const res = await updateSetting(shopDomain, shopId, data);
+    const res = await updateSetting(shopId, data);
 
     ctx.status = 200;
     ctx.body = {
