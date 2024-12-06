@@ -13,7 +13,7 @@ module.exports = {
   entry: ['./src/index.js'],
   output: {
     path: path.resolve(__dirname, '../../static/scripttag'),
-    filename: 'avada-sale-pop.min.js'
+    filename: 'index.min.js'
   },
   resolve: {
     alias: {
