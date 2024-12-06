@@ -8,7 +8,7 @@ export default class ApiManager {
   getApiData = async () => {
     const shopifyDomain = window.Shopify.shop;
     const {data} = await makeRequest(
-      `https://localhost:3000/clientApi/notifications?shopDomain=${shopifyDomain}`
+      `http://localhost:5000/clientApi/notifications?shopDomain=${shopifyDomain}`
     );
 
     return {settings: data.setting, notifications: data.notifications};
