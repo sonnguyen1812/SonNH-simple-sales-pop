@@ -1,3 +1,4 @@
+// packages/functions/src/routes/api.js
 import * as appNewsController from '@functions/controllers/appNewsController';
 import * as sampleController from '@functions/controllers/sampleController';
 import * as shopController from '@functions/controllers/shopController';
