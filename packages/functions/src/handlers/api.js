@@ -17,7 +17,8 @@ const verifyEmbedConfig = {
   scopes: shopifyConfig.scopes,
   secret: shopifyConfig.secret,
   hostName: appConfig.baseUrl,
-  isEmbeddedApp: true
+  isEmbeddedApp: true,
+  // accessTokenKey: shopifyConfig.accessTokenKey
 };
 render(api, {
   cache: true,
