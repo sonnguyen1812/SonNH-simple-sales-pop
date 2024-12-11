@@ -17,14 +17,9 @@ const NotificationPopup = ({
   timestamp,
   productImage,
   time,
-  onDeleteNotification,
   id
 }) => {
   const formattedDate = timestampToDate(timestamp);
-  const handleDelete = () => {
-    onDeleteNotification(id);
-  };
-
   return (
     <div className="Avava-SP__Wrapper fadeInUp animated">
       <div className="Avava-SP__Inner">
@@ -52,7 +47,7 @@ const NotificationPopup = ({
               </div>
             </div>
           </a>
-          <div className="close-btn" onClick={handleDelete}>
+          <div className="close-btn">
             <Tooltip content="Delete notification">
               <TextContainer>
                 <Icon source={XIcon} color="critical" accessibilityLabel="Delete" />
@@ -67,7 +62,6 @@ const NotificationPopup = ({
 };
 
 NotificationPopup.propTypes = {
-  onDeleteNotification: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired
 };
 
