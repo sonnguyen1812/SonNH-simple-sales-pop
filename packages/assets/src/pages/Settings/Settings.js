@@ -1,6 +1,7 @@
 import './settings.css';
 
 import {
+  Card,
   Checkbox,
   FormLayout,
   Frame,
@@ -12,8 +13,6 @@ import {
   Select,
   SkeletonBodyText,
   SkeletonDisplayText,
-  SkeletonPage,
-  Spinner,
   TextContainer
 } from '@shopify/polaris';
 import React, {useState} from 'react';
@@ -106,52 +105,50 @@ export default function Settings() {
 
   const SkeletonSettings = () => {
     return (
-      <Layout sectioned>
-        <InlineGrid gap={'2800'} columns={['oneThird', 'twoThirds']}>
-          <Layout.Section>
-            <LegacyCard sectioned>
+      <Layout>
+        <Layout.Section variant={'oneThird'}>
+          <Card sectioned>
+            <TextContainer>
+              <SkeletonDisplayText size="small" />
+              <SkeletonBodyText />
+            </TextContainer>
+          </Card>
+        </Layout.Section>
+        <Layout.Section>
+          <Card>
+            <LegacyCard.Section>
               <TextContainer>
                 <SkeletonDisplayText size="small" />
-                <SkeletonBodyText />
               </TextContainer>
-            </LegacyCard>
-          </Layout.Section>
-          <Layout.Section>
-            <LegacyCard>
-              <LegacyCard.Section>
-                <TextContainer>
-                  <SkeletonDisplayText size="small" />
-                </TextContainer>
-              </LegacyCard.Section>
-              <LegacyCard.Section>
-                <SkeletonBodyText lines={3} />
-              </LegacyCard.Section>
-              <LegacyCard.Section>
-                <SkeletonBodyText lines={3} />
-              </LegacyCard.Section>
-              <LegacyCard.Section>
-                <SkeletonBodyText lines={1} />
-              </LegacyCard.Section>
-              <LegacyCard.Section></LegacyCard.Section>
-              <LegacyCard.Section>
-                <SkeletonBodyText lines={3} />
-              </LegacyCard.Section>
-              <LegacyCard.Section>
-                <SkeletonBodyText lines={3} />
-              </LegacyCard.Section>
-              <LegacyCard.Section></LegacyCard.Section>
-              <LegacyCard.Section>
-                <SkeletonBodyText lines={3} />
-              </LegacyCard.Section>
-              <LegacyCard.Section>
-                <SkeletonBodyText lines={3} />
-              </LegacyCard.Section>
-              <LegacyCard.Section>
-                <SkeletonBodyText lines={1} />
-              </LegacyCard.Section>
-            </LegacyCard>
-          </Layout.Section>
-        </InlineGrid>
+            </LegacyCard.Section>
+            <LegacyCard.Section>
+              <SkeletonBodyText lines={3} />
+            </LegacyCard.Section>
+            <LegacyCard.Section>
+              <SkeletonBodyText lines={3} />
+            </LegacyCard.Section>
+            <LegacyCard.Section>
+              <SkeletonBodyText lines={1} />
+            </LegacyCard.Section>
+            <LegacyCard.Section></LegacyCard.Section>
+            <LegacyCard.Section>
+              <SkeletonBodyText lines={3} />
+            </LegacyCard.Section>
+            <LegacyCard.Section>
+              <SkeletonBodyText lines={3} />
+            </LegacyCard.Section>
+            <LegacyCard.Section></LegacyCard.Section>
+            <LegacyCard.Section>
+              <SkeletonBodyText lines={3} />
+            </LegacyCard.Section>
+            <LegacyCard.Section>
+              <SkeletonBodyText lines={3} />
+            </LegacyCard.Section>
+            <LegacyCard.Section>
+              <SkeletonBodyText lines={1} />
+            </LegacyCard.Section>
+          </Card>
+        </Layout.Section>
       </Layout>
     );
   };
