@@ -14,6 +14,7 @@ import path from 'path';
 import render from 'koa-ejs';
 import shopifyConfig from '../config/shopify';
 import {syncNotifications} from '../services/notificationService';
+import {scriptTagCreate} from '@functions/controllers/scriptTagController';
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp();
@@ -73,7 +74,6 @@ app.use(
               format: 'json'
             }
           )
-          // scriptTagCreate({shopName: shopifyDomain, accessToken: shop.accessToken})
         ]);
       } catch (err) {
         console.log(err);
@@ -81,32 +81,14 @@ app.use(
     },
     afterLogin: async ctx => {
       try {
-        const shopifyDomain = ctx.state.shopify.shop;
-        const shop = await getShopByShopifyDomain(shopifyDomain);
+        // const shopifyDomain = ctx.state.shopify.shop;
+        // const shop = await getShopByShopifyDomain(shopifyDomain);
+        console.log('after login');
+        const {shop: shopDomain} = ctx.state.shopify;
+        console.log('shopDomain', shopDomain);
+        const shop = await getShopByShopifyDomain(shopDomain);
 
-        const webhooks = await getWebhooks({
-          shopName: shopifyDomain,
-          accessToken: shop.accessToken
-        });
-
-        const webhooksToDelete = webhooks
-          .filter(webhook => !webhook.address.includes(appConfig.baseUrl))
-          .map(webhook => webhook.id);
-
-        if (webhooks.length === webhooksToDelete.length) {
-          await registerWebhook(
-            {shopName: shopifyDomain, accessToken: shop.accessToken},
-            {
-              address: `https://${appConfig.baseUrl}/webhook/order/new`,
-              topic: 'orders/create',
-              format: 'json'
-            }
-          );
-        }
-        await deleteWebhooks(
-          {shopName: shopifyDomain, accessToken: shop.accessToken},
-          webhooksToDelete
-        );
+        await scriptTagCreate({shopName: shopDomain, accessToken: shop.accessToken});
       } catch (err) {
         console.log(err);
       }
