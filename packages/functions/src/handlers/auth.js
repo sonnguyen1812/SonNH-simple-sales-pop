@@ -14,7 +14,7 @@ import path from 'path';
 import render from 'koa-ejs';
 import shopifyConfig from '../config/shopify';
 import {syncNotifications} from '../services/notificationService';
-import {scriptTagCreate} from '@functions/controllers/scriptTagController';
+import {scriptTagCreate} from '@functions/services/scriptTagService';
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp();
@@ -37,6 +37,7 @@ app.use(contentSecurityPolicy(true));
 // Register all routes for the application
 app.use(
   shopifyAuth({
+    // accessTokenKey: shopifyConfig.accessTokenKey,
     apiKey: shopifyConfig.apiKey,
     firebaseApiKey: shopifyConfig.firebaseApiKey,
     scopes: shopifyConfig.scopes,
