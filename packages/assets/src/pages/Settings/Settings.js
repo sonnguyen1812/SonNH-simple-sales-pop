@@ -10,7 +10,11 @@ import {
   LegacyTabs,
   Page,
   Select,
-  Spinner
+  SkeletonBodyText,
+  SkeletonDisplayText,
+  SkeletonPage,
+  Spinner,
+  TextContainer
 } from '@shopify/polaris';
 import React, {useState} from 'react';
 
@@ -21,8 +25,8 @@ import SliderRange from '@assets/components/SliderRange/SliderRange';
 import {api} from '@assets/helpers';
 import defaultSettings from '@assets/const/defaultSettings';
 import useActiveToast from '@assets/hooks/toast/useActiveToast';
-import useConfirmModal from '@assets/hooks/popup/useConfirmModal';
-import useFetchApi from '@assets/hooks/api/useFetchApi';
+import useModal from '@assets/hooks/popup/useModal';
+import useGetApi from '@assets/hooks/api/useGetApi';
 import useSelectedTab from '@assets/hooks/tabs/useSelectedTab';
 
 /**
@@ -32,9 +36,13 @@ export default function Settings() {
   const {tabSelected, handleTabChange} = useSelectedTab(0);
   const {toastMarkup, handleActiveToastChange} = useActiveToast(false, '');
   const [loading, setLoading] = useState(false);
-  const {data: settings, setData: setSettings, fetched, setFetched} = useFetchApi({
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const {data: settings, setData: setSettings, fetched, setFetched} = useGetApi({
     url: '/settings',
-    defaultData: defaultSettings
+    defaultData: defaultSettings,
+    onSuccess: () => {
+      setIsInitialLoading(false);
+    }
   });
 
   console.log(settings);
@@ -53,33 +61,99 @@ export default function Settings() {
         body: {data: settings}
       });
 
-      console.log(res);
+      if (res && res.data) {
+        // Đảm bảo cập nhật state với toàn bộ dữ liệu trả về
+        setSettings(prevSettings => ({
+          ...prevSettings, // Giữ lại các giá trị cũ
+          ...res.data // Cập nhật với dữ liệu mới
+        }));
 
-      setSettings(res.data);
-      closeModal();
-      setLoading(false);
-      setFetched(true);
-
-      handleActiveToastChange('Save successfully');
+        setFetched(true);
+        closeModal();
+        handleActiveToastChange('Save successfully');
+      }
     } catch (err) {
-      console.log(err);
-      setLoading(false);
+      console.error('Save settings error:', err);
       handleActiveToastChange('Save failed');
+    } finally {
+      setLoading(false);
     }
   };
 
-  const {modal, openModal, closeModal} = useConfirmModal({
+  const {modal, openModal, closeModal} = useModal({
     title: 'Save change',
     content: 'Do you want to update your setting change',
-    confirmAction: handleSaveSettings
+    confirmAction: handleSaveSettings,
+    primaryAction: {
+      content: 'Save',
+      loading: loading,
+      onAction: handleSaveSettings
+    }
   });
 
   const handleSettingsChange = (key, value) => {
     setFetched(false);
-    setSettings(prev => ({
-      ...prev,
-      [key]: value
-    }));
+    setSettings(prevSettings => {
+      const newSettings = {
+        ...prevSettings,
+        [key]: value
+      };
+      // Log để debug
+      console.log('Settings after change:', newSettings);
+      return newSettings;
+    });
+  };
+
+  const SkeletonSettings = () => {
+    return (
+      <Layout sectioned>
+        <InlineGrid gap={'2800'} columns={['oneThird', 'twoThirds']}>
+          <Layout.Section>
+            <LegacyCard sectioned>
+              <TextContainer>
+                <SkeletonDisplayText size="small" />
+                <SkeletonBodyText />
+              </TextContainer>
+            </LegacyCard>
+          </Layout.Section>
+          <Layout.Section>
+            <LegacyCard>
+              <LegacyCard.Section>
+                <TextContainer>
+                  <SkeletonDisplayText size="small" />
+                </TextContainer>
+              </LegacyCard.Section>
+              <LegacyCard.Section>
+                <SkeletonBodyText lines={3} />
+              </LegacyCard.Section>
+              <LegacyCard.Section>
+                <SkeletonBodyText lines={3} />
+              </LegacyCard.Section>
+              <LegacyCard.Section>
+                <SkeletonBodyText lines={1} />
+              </LegacyCard.Section>
+              <LegacyCard.Section></LegacyCard.Section>
+              <LegacyCard.Section>
+                <SkeletonBodyText lines={3} />
+              </LegacyCard.Section>
+              <LegacyCard.Section>
+                <SkeletonBodyText lines={3} />
+              </LegacyCard.Section>
+              <LegacyCard.Section></LegacyCard.Section>
+              <LegacyCard.Section>
+                <SkeletonBodyText lines={3} />
+              </LegacyCard.Section>
+              <LegacyCard.Section>
+                <SkeletonBodyText lines={3} />
+              </LegacyCard.Section>
+              <LegacyCard.Section>
+                <SkeletonBodyText lines={1} />
+              </LegacyCard.Section>
+            </LegacyCard>
+          </Layout.Section>
+        </InlineGrid>
+      </Layout>
+    );
   };
 
   const pageOptions = [
@@ -222,11 +296,21 @@ export default function Settings() {
     }
   ];
 
-  if (loading) {
+  // if (loading) {
+  //   return (
+  //     <div className="loading">
+  //       <Spinner size={'small'} />
+  //     </div>
+  //   );
+  // }
+
+  if (isInitialLoading) {
     return (
-      <div className="loading">
-        <Spinner size={'small'} />
-      </div>
+      <Frame>
+        <Page fullWidth title="Settings" subtitle="Dicide how your notifications will display">
+          <SkeletonSettings />
+        </Page>
+      </Frame>
     );
   }
 
@@ -241,14 +325,15 @@ export default function Settings() {
             content: 'Save',
             onAction: async () => {
               openModal();
-            }
+            },
+            loading: loading
           }}
         >
           <Layout sectioned>
             <InlineGrid columns={['oneThird', 'twoThirds']}>
               <div>
                 <NotificationPopup
-                  firstName="Son NH"
+                  firstName="Son Ngu Yen"
                   city="Hanoi"
                   country="Vietnam"
                   productName="Nike Dunk Low"
