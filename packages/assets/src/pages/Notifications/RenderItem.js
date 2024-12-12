@@ -10,18 +10,18 @@ const renderItem = item => {
 
   return (
     <ResourceItem id={id}>
-      <NotificationPopup
-        id={id}
-        firstName={firstName}
-        city={city}
-        productName={productName}
-        country={country}
-        // loading={loading}
-        // fetched={fetched}
-        timestamp={timestamp}
-        productImage={productImage}
-        time={time}
-      />
+      <div className={'notifications'}>
+        <NotificationPopup
+          id={id}
+          firstName={firstName}
+          city={city}
+          productName={productName}
+          country={country}
+          timestamp={timestamp}
+          productImage={productImage}
+          time={time}
+        />
+      </div>
     </ResourceItem>
   );
 };

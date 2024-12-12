@@ -33,12 +33,14 @@ export default class DisplayManager {
   display({notification, position, truncateProductName, hideTimeAgo}) {
     const container = document.querySelector('#Avada-SalePop');
     render(
-      <NotificationPopup
-        {...notification}
-        position={position}
-        truncateProductName={truncateProductName}
-        hideTimeAgo={hideTimeAgo}
-      />,
+      <div className={'scripttag'}>
+        <NotificationPopup
+          {...notification}
+          position={position}
+          truncateProductName={truncateProductName}
+          hideTimeAgo={hideTimeAgo}
+        />
+      </div>,
       container
     );
   }

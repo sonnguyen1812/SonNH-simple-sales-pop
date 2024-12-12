@@ -1,28 +1,35 @@
+// packages/scripttag/src/components/NotificationPopup/NotificationPopup.js
 import './NoticationPopup.scss';
+import {CheckIcon} from '@shopify/polaris-icons';
+import {Icon} from '@shopify/polaris';
 
 import React from 'react';
+import timestampToRelativeTime from '@assets/helpers/utils/timestampToRelativeTime';
+import PropTypes from 'prop-types';
 
 const NotificationPopup = ({
   firstName,
   city,
   country,
   productName,
-  relativeDate = 'a day ago',
+  timestamp,
+  relativeDate = timestampToRelativeTime(timestamp),
   productImage,
   position,
+  id,
   truncateProductName,
   hideTimeAgo
 }) => {
   const wrapperClass = `Avava-SP__Wrapper fadeInUp animated Avava-SP__Wrapper--${position}`;
   const subtitleClass = truncateProductName
-    ? 'Avada-SP__Subtitle text-elipsis'
+    ? 'Avada-SP__Subtitle--text-ellipsis'
     : 'Avada-SP__Subtitle';
-  const timeAgo = hideTimeAgo ? 'Avada-SP__Footer--hide' : '';
+  const timeAgo = hideTimeAgo ? 'Avada-SP__Footer--hide-time' : '';
   return (
     <div className={wrapperClass}>
       <div className="Avava-SP__Inner">
         <div className="Avava-SP__Container">
-          <a href="#" className={'Avava-SP__LinkWrapper'}>
+          <div className={'Avava-SP__LinkWrapper'}>
             <div
               className="Avava-SP__Image"
               style={{
@@ -35,19 +42,24 @@ const NotificationPopup = ({
               </div>
               <div className={subtitleClass}>purchased {productName}</div>
               <div className={'Avada-SP__Footer'}>
-                <span className={timeAgo}>{relativeDate} </span>
+                <span className={timeAgo}>{relativeDate}</span>
                 <span className="uni-blue">
-                  <i className="fa fa-check" aria-hidden="true" /> by Avada
+                  <i>
+                    <Icon source={CheckIcon} tone="info" />
+                  </i>
+                  by Avada
                 </span>
               </div>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-NotificationPopup.propTypes = {};
+NotificationPopup.propTypes = {
+  id: PropTypes.string.isRequired
+};
 
 export default NotificationPopup;

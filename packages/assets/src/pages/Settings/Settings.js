@@ -8,17 +8,17 @@ import {
   InlineGrid,
   Layout,
   LegacyCard,
-  LegacyTabs,
   Page,
   Select,
   SkeletonBodyText,
   SkeletonDisplayText,
+  Tabs,
   TextContainer
 } from '@shopify/polaris';
 import React, {useState} from 'react';
 
 import DesktopPositionInput from '@assets/components/DesktopPositionInput/DesktopPositionInput';
-import NotificationPopup from '@assets/components/NotificationPopup/NotificationPopup';
+import NotificationPopup from '../../../../scripttag/src/components/NotificationPopup/NotificationPopup';
 import PageInput from '@assets/components/PageInput/PageInput';
 import SliderRange from '@assets/components/SliderRange/SliderRange';
 import {api} from '@assets/helpers';
@@ -293,14 +293,6 @@ export default function Settings() {
     }
   ];
 
-  // if (loading) {
-  //   return (
-  //     <div className="loading">
-  //       <Spinner size={'small'} />
-  //     </div>
-  //   );
-  // }
-
   if (isInitialLoading) {
     return (
       <Frame>
@@ -326,24 +318,28 @@ export default function Settings() {
             loading: loading
           }}
         >
-          <Layout sectioned>
-            <InlineGrid columns={['oneThird', 'twoThirds']}>
-              <div>
+          <Layout>
+            <Layout.Section variant={'oneThird'}>
+              <div className={'settings'}>
                 <NotificationPopup
                   firstName="Son Ngu Yen"
                   city="Hanoi"
                   country="Vietnam"
-                  productName="Nike Dunk Low"
+                  productName="Nike Dunk Low heheheheheheheheh"
                   productImage="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/c960a73e-8565-4cc6-9329-d2449c1944df/dunk-low-shoes-kKHp1z.png"
-                  time="a day ago"
+                  hideTimeAgo={settings.hideTimeAgo}
+                  truncateProductName={settings.truncateProductName}
+                  relativeDate="a day ago"
                 />
               </div>
-              <LegacyCard>
-                <LegacyTabs tabs={tabs} selected={tabSelected} onSelect={handleTabChange}>
+            </Layout.Section>
+            <Layout.Section>
+              <Card>
+                <Tabs tabs={tabs} selected={tabSelected} onSelect={handleTabChange}>
                   <LegacyCard.Section>{tabs[tabSelected].body}</LegacyCard.Section>
-                </LegacyTabs>
-              </LegacyCard>
-            </InlineGrid>
+                </Tabs>
+              </Card>
+            </Layout.Section>
           </Layout>
           {toastMarkup}
         </Page>
