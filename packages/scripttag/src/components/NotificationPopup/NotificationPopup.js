@@ -4,7 +4,7 @@ import {CheckIcon} from '@shopify/polaris-icons';
 import {Icon} from '@shopify/polaris';
 
 import React from 'react';
-import timestampToRelativeTime from '@assets/helpers/utils/timestampToRelativeTime';
+import timestampToRelativeTime from '../../../../assets/src/helpers/utils/timestampToRelativeTime';
 import PropTypes from 'prop-types';
 
 const NotificationPopup = ({
