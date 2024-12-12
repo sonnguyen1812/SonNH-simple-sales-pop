@@ -25,13 +25,7 @@
   transform: translate(-50%, -50%);
 }
 
-.Avava-SP__Wrapper--text-elipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.Avada-SP__Footer--hide-time {
+.Avava-SP__Wrapper .Avada-SP__Content .Avada-SP__Footer--hide-time {
   visibility: hidden;
   display: none;
 }
@@ -92,7 +86,8 @@
   padding-block: 5px;
   padding-left: 10px;
   width: 350px;
-  
+
+
   .close-btn {
     top: 5px;
     right: 5px;
@@ -134,10 +129,11 @@
   font-weight: bold;
   //color: #8b93a8;
 }
-.Avava-SP__Wrapper .Avada-SP__Content .Avada-SP__Subtitle--text-elipsis {
+.Avava-SP__Wrapper .Avada-SP__Content .Avada-SP__Subtitle--text-ellipsis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: bold;
 }
 .Avava-SP__Wrapper .Avada-SP__Content .Avada-SP__Footer {
   font-size: 10px;
