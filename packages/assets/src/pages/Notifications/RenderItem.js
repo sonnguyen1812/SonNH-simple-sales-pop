@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NotificationPopup from '@assets/components/NotificationPopup/NotificationPopup';
+import NotificationPopup from '../../../../scripttag/src/components/NotificationPopup/NotificationPopup';
 import {ResourceItem} from '@shopify/polaris';
 import timestampToRelativeTime from '@assets/helpers/utils/timestampToRelativeTime';
 
