@@ -100,7 +100,8 @@ export default class DisplayManager {
     await this.display({
       notification: currentNotification,
       position: settings.position,
-      truncateProductName: settings.truncateProductName
+      truncateProductName: settings.truncateProductName,
+      hideTimeAgo: settings.hideTimeAgo
     });
     await delay(settings.displayDuration);
     this.fadeOut();

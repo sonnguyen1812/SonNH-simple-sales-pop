@@ -6,7 +6,7 @@ export const syncNotifications = async ({shopDomain, accessToken, shopId}) => {
   const orderDatas = await getOrderDatas({
     shopifyDomain: shopDomain,
     accessToken,
-    limit: 30,
+    limit: 15,
     fields: 'customer,line_items,created_at,id'
   });
   console.log(`Order count: ${orderDatas.length}`);

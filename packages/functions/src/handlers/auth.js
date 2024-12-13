@@ -54,19 +54,23 @@ app.use(
     isEmbeddedApp: true,
     afterInstall: async ctx => {
       try {
-        const shopifyDomain = ctx.state.shopify.shop;
-        const shop = await getShopByShopifyDomain(shopifyDomain);
+        // const shopifyDomain = ctx.state.shopify.shop;
+        // const shop = await getShopByShopifyDomain(shopifyDomain);
+        console.log('After install:');
+        const {shop: shopDomain} = ctx.state.shopify;
+        console.log('shopDomain:', shopDomain);
+        const shop = await getShopByShopifyDomain(shopDomain);
 
         await Promise.all([
-          addSetting({shopDomain: shopifyDomain, shopId: shop.id, addInfo: defaultSettings}),
+          addSetting({shopDomain: shopDomain, shopId: shop.id, addInfo: defaultSettings}),
           syncNotifications({
-            shopDomain: shopifyDomain,
+            shopDomain: shopDomain,
             accessToken: shop.accessToken,
             shopId: shop.id
           }),
           registerWebhook(
             {
-              shopName: shopifyDomain,
+              shopName: shopDomain,
               accessToken: shop.accessToken
             },
             {
@@ -84,7 +88,7 @@ app.use(
       try {
         // const shopifyDomain = ctx.state.shopify.shop;
         // const shop = await getShopByShopifyDomain(shopifyDomain);
-        console.log('after login');
+        console.log('After login:');
         const {shop: shopDomain} = ctx.state.shopify;
         console.log('shopDomain', shopDomain);
         const shop = await getShopByShopifyDomain(shopDomain);

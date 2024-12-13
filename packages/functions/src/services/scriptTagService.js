@@ -12,18 +12,19 @@ export const scriptTagCreate = async ({shopName, accessToken}) => {
   try {
     // Xóa các script tag cũ
     const existingTags = await shopify.scriptTag.list();
+    console.log('existingTags:', existingTags);
     await Promise.all(existingTags.map(({id}) => shopify.scriptTag.delete(id)));
+    console.log('done delete scripttag');
 
-    // Tạo script tag mới với đầy đủ thông tin
-    const newScriptTag = await shopify.scriptTag.create({
-      event: 'onload',
-      src: `https://${appConfig.baseUrl}/scripttag/index.min.js`,
-      display_scope: 'online_store',
-      cache: false
-    });
-    const newScriptTagList = await shopify.scriptTag.list();
-    console.log('scriptTag:', newScriptTagList);
-    return newScriptTag;
+    // const newScriptTag = await shopify.scriptTag.create({
+    //   event: 'onload',
+    //   src: `https://${appConfig.baseUrl}/scripttag/index.min.js`,
+    //   display_scope: 'online_store',
+    //   cache: false
+    // });
+    // const newScriptTagList = await shopify.scriptTag.list();
+    // console.log('scriptTag:', newScriptTagList);
+    // return newScriptTag;
   } catch (error) {
     console.error('ScriptTag Error:', error);
     throw error;
