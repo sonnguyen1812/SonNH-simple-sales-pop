@@ -1,3 +1,4 @@
+// packages/functions/src/handlers/auth.js
 import 'isomorphic-fetch';
 
 import {contentSecurityPolicy, shopifyAuth} from '@avada/core';

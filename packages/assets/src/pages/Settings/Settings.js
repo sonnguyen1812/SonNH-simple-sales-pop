@@ -1,3 +1,4 @@
+// packages/assets/src/pages/Settings/Settings.js
 import './settings.css';
 
 import {

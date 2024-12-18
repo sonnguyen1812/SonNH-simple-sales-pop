@@ -1,3 +1,4 @@
+// packages/functions/src/controllers/settingsController.js
 import {getSetting, updateSetting} from '@functions/repositories/settingsRepository';
 
 import {getCurrentShop} from '@functions/helpers/auth';
