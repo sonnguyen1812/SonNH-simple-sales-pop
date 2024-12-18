@@ -1,3 +1,4 @@
+// packages/scripttag/src/managers/ApiManager.js
 import makeRequest from '../helpers/api/makeRequest';
 
 export default class ApiManager {

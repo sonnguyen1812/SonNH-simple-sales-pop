@@ -1,3 +1,4 @@
+// packages/functions/src/controllers/clientApiController.js
 import {getListNotificationsByShopDomain} from '@functions/repositories/notificationsRepository';
 import {getSettingByShopDomain} from '@functions/repositories/settingsRepository';
 

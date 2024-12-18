@@ -1,3 +1,4 @@
+// packages/functions/src/handlers/clientApi.js
 import App from 'koa';
 import router from '@functions/routes/clientApi';
 import {handleError} from '@functions/services/errorService';

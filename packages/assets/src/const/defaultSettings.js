@@ -1,3 +1,4 @@
+// packages/assets/src/const/defaultSettings.js
 const defaultSettings = {
   position: '',
   hideTimeAgo: '',
