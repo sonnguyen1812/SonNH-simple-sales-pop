@@ -11,6 +11,7 @@ export default class ApiManager {
     const {data} = await makeRequest(
       `http://localhost:5000/clientApi/notifications?shopDomain=${shopifyDomain}`
     );
+    console.log('ApiManager getApiData data:', data);
     // http://localhost:5000/clientApi/notifications?shopDomain=avada-first-app-store.myshopify.com
 
     return {settings: data.setting, notifications: data.notifications};
